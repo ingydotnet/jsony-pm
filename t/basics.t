@@ -53,7 +53,7 @@ baz
 --- json
 {
   "foo": "bar",
-  "baz": 1,
+  "baz": 1
 }
 
 === Object 2
@@ -72,7 +72,7 @@ plugin Frobnicator {
     "port": 8080
   },
   "plugin", "Frobnicator", {
-    "harder": true,
+    "harder": true
   }
 ]
 
