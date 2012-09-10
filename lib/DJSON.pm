@@ -1,10 +1,19 @@
 package DJSON;
 
 use Pegex;
-use base 'Exporter';
-
 our $VERSION = '0.0.1';
+
+use base 'Exporter';
 our @EXPORT = qw(decode_djson);
+
+sub djson_grammar;
+
+sub decode_djson {
+    pegex(
+        djson_grammar,
+        { receiver => 'DJSON::Receiver' },
+    )->parse($_[0]);
+}
 
 use constant djson_grammar => <<'...';
 %grammar djson
@@ -35,7 +44,6 @@ scalar:
     null |
     string
 
-# string and number are interpretations of http://www.json.org/
 string: double | single | bare
 
 double: /
@@ -68,16 +76,29 @@ false: /false/
 null: /null/
 ...
 
-sub decode_djson {
-    return pegex(
-        djson_grammar,
-        { receiver => 'DJSON::Receiver' },
-    )->parse($_[0]);
-}
-
+# The receiver class can reshape the data at any given rule match.
 package DJSON::Receiver;
 use base 'Pegex::Receiver';
 
-sub final {
-    return $_[1];
+# Receiving ('got_') methods can be defined for each rule, and get called
+# after a match. But often the default shape of the data is fine, and a method
+# need not be implemented for every rule.
+sub got_rulename {
+    my ($self, $data) = @_;
+    # ... change data if needed
+    return $data;
 }
+
+# Two special methods: 'initial' and 'final' can be defined and get called
+# before and after a successful parse.
+
+# sub initial {
+#     my ($self) = @_;
+#     # Do initialization tasks
+# }
+
+# sub final {
+#     my ($self, $data) = @_;
+#     # Perform last rites on $data
+#     return $data;
+# }
