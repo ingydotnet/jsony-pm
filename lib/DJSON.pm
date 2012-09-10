@@ -1,5 +1,4 @@
 package DJSON;
-use Moo;
 
 use Pegex;
 use base 'Exporter';
