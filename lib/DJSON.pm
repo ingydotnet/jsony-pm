@@ -7,7 +7,7 @@ our $VERSION = '0.0.1';
 our @EXPORT = qw(decode_djson);
 
 use constant djson_grammar => <<'...';
-%grammar json
+%grammar djson
 %version 0.0.1
 
 djson: map | seq | list
