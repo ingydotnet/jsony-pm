@@ -8,18 +8,15 @@ use YAML;
 # $Pegex::Parser::Debug = 1;
 
 sub djson_decode {
-    my $djson = (shift)->value;
-    decode_djson($djson);
+    decode_djson $_[0]->value;
 }
 
 sub json_decode {
-    my $json = (shift)->value;
-    decode_json($json);
+    decode_json $_[0]->value;
 }
 
 sub yaml {
-    my $data = (shift)->value;
-    YAML::Dump($data);
+    YAML::Dump $_[0]->value;
 }
 
 __DATA__
