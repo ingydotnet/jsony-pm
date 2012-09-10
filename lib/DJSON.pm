@@ -32,11 +32,11 @@ pair: string ~~ node
 
 seq:
     / ~ <LSQUARE> ~ /
-    node* % / ~ <COMMA>? ~ /
+    node* %% / ~ <COMMA>? ~ /
     / ~ <RSQUARE> ~ /
 
 list:
-    string* % / ~ <COMMA>? ~ /
+    scalar* %% / ~ <COMMA>? ~ /
 
 scalar:
     number |
@@ -76,7 +76,9 @@ false: /false/
 null: /null/
 ...
 
+###############################################################################
 # The receiver class can reshape the data at any given rule match.
+###############################################################################
 package DJSON::Receiver;
 use base 'Pegex::Receiver';
 
@@ -102,3 +104,5 @@ sub got_rulename {
 #     # Perform last rites on $data
 #     return $data;
 # }
+
+sub got_null { return undef }
