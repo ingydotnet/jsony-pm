@@ -29,15 +29,14 @@ map:
     pair*
     ~RCURLY~
 
-pair: string ~~ node~
+pair: string ~ node ~
 
 seq:
     ~LSQUARE~
     node* %% /~<COMMA>?~/
     ~RSQUARE~
 
-list:
-    node* %% /~<COMMA>?~/
+list: node* %% /~<COMMA>?~/
 
 scalar: double | single | bare
 
@@ -65,14 +64,6 @@ bare: /(
         <HASH>
     ]+
 )/
-
-boolean: true | false
-
-true: /true/
-
-false: /false/
-
-null: /null/
 ...
 
 ###############################################################################
@@ -82,21 +73,9 @@ package DJSON::Receiver;
 use base 'Pegex::Receiver';
 use boolean;
 
-sub got_map {
-    my ($self, $data) = @_;
-    $data = $data->[0];
-    my $map = {};
-    for my $pair (@$data) {
-        $map->{$pair->[0]} = $pair->[1];
-    }
-    return $map;
-}
-
-sub got_seq {
-    my ($self, $data) = @_;
-    return $data->[0];
-}
-
+sub got_string {"$_[1]"}
+sub got_map { +{ map {($_->[0], $_->[1])} @{@_[1]->[0]} } }
+sub got_seq { $_[1]->[0] }
 sub got_bare {
     $_ = pop;
     /true/ ? true :
@@ -110,8 +89,3 @@ sub got_bare {
     )$/x ? ($_ + 0) :
     "$_"
 }
-
-sub got_number { return $_[1] + 0 }
-sub got_true { return true }
-sub got_false { return false }
-sub got_null { return undef }
