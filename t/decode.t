@@ -111,7 +111,7 @@ published 2011-02-10T15:04:55Z
   actor {
     url http://example.org/martin
     objectType person
-    id tag:example.org,2011:martin
+    id 'tag:example.org,2011:martin'
     image {
       url http://example.org/martin/image
       width 250
@@ -122,12 +122,12 @@ published 2011-02-10T15:04:55Z
   verb post
   object {
     url http://example.org/blog/2011/02/entry
-    id tag:example.org,2011:abc123/xyz
+    id 'tag:example.org,2011:abc123/xyz'
   }
   target {
     url http://example.org/blog/
     objectType blog
-    id tag:example.org,2011:abc123
+    id 'tag:example.org,2011:abc123'
     displayName "Martin's Blog"
   }
 }

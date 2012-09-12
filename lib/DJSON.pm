@@ -39,13 +39,9 @@ seq:
 list:
     node* %% /~<COMMA>?~/
 
-scalar:
-    number |
-    boolean |
-    null |
-    string
+scalar: double | single | bare
 
-string: double | single | bare
+string: scalar
 
 double: /
     <DOUBLE>
@@ -64,15 +60,10 @@ bare: /(
         <WS>
         <LCURLY><RCURLY>
         <LSQUARE><RSQUARE>
+        <SINGLE><DOUBLE>
+        <COMMA>
+        <HASH>
     ]+
-)/
-
-number: /(
-    <DASH>?
-    (: 0 | [1-9] <DIGIT>* )
-    (: <DOT> <DIGIT>* )?
-    (: [eE] [<DASH><PLUS>]? <DIGIT>+ )?
-    (= <WS> | <COMMA>)
 )/
 
 boolean: true | false
@@ -104,6 +95,20 @@ sub got_map {
 sub got_seq {
     my ($self, $data) = @_;
     return $data->[0];
+}
+
+sub got_bare {
+    $_ = pop;
+    /true/ ? true :
+    /false/ ? false :
+    /null/ ? undef :
+    /^(
+        -?
+        (?: 0 | [1-9] [0-9]* )
+        (?: <DOT> [0-9]* )?
+        (?: [eE] [\-\+]? [0-9]+ )?
+    )$/x ? ($_ + 0) :
+    "$_"
 }
 
 sub got_number { return $_[1] + 0 }
