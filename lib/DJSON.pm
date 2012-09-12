@@ -29,7 +29,7 @@ map:
     pair*
     ~RCURLY~
 
-pair: string ~ node ~
+pair: string /~<COLON>?~/ node /~<COMMA>?~/
 
 seq:
     ~LSQUARE~
