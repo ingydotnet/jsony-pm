@@ -178,6 +178,19 @@ The Spec
       }
     }
     
+    === Comments
+    --- djson
+    foo bar     # comment
+    \# Comment
+    url http://xyz.com#not_comment
+    --- json
+    [
+        "foo",
+        "bar",
+        "url",
+        "http://xyz.com#not_comment"
+    ]
+    
 
 Edge Cases
 ----------
@@ -346,4 +359,17 @@ Edge Cases
         "displayName": "Martin's Blog"
       }
     }
+    
+    === Comments
+    --- djson
+    foo bar     # comment
+    \# Comment
+    url http://xyz.com#not_comment
+    --- json
+    [
+        "foo",
+        "bar",
+        "url",
+        "http://xyz.com#not_comment"
+    ]
     
