@@ -3,9 +3,11 @@
 
 === Empty Stream
 --- djson: ''
+--- json: []
 
 === Whitespace Stream
 --- djson: '              '
+--- json: []
 
 === Collections as mapping keys
 --- djson
@@ -13,25 +15,43 @@
       [foo bar] baz
         {foo bar} baz
 }
+ERROR
 
 === Duplicate mapping keys
 --- djson: { foo foo foo foo }
+ERROR
 
 === Odd number of nodes in mapping
 --- djson: { foo bar baz }
+ERROR
 
 === Semis and commas in djson
 --- djson
 {
        foo: bar, baz
-          do :re ,mi
-                 oh : my , lord
+          do :re mi
+                 oh : my , lord shoggoth
 }
+--- json
+[
+  {
+    "foo": "bar",
+    "baz": "do",
+    ":re": "mi",
+    "oh": "my",
+    "lord:" "shoggoth"
+  }
+]
+
+=== Semis and commas in odd places
+--- djson
+{ foo: ,bar }
+ERROR
 
 === Comment syntax
 --- djson
-/* comment */
-# comment
+/* comment */ <-- this should work
+# comment     <-- this would require making \n special which I'm unsure of
 What happens?
 
 === Unterminated Quotes
@@ -40,7 +60,9 @@ What happens?
       name 'Ingy dot Net
         size 42
 }
+ERROR
 
 === Unquoted punctuation
 --- djson
 ! @ # $ % ^ { & * ( | }'}
+ERROR
