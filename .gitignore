@@ -1,2 +1,3 @@
-# for md2html -f README.md
+# For md2html -f README.md
+# (From https://github.com/sharpsaw/ruby-dots/blob/master/bin/md2html )
 README.html
