@@ -163,3 +163,16 @@ published 2011-02-10T15:04:55Z
   }
 }
 
+=== Comments
+--- djson
+foo bar     # comment
+\# Comment
+url http://xyz.com#not_comment
+--- json
+[
+    "foo",
+    "bar",
+    "url",
+    "http://xyz.com#not_comment"
+]
+

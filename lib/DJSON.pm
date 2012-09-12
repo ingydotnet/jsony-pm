@@ -61,9 +61,12 @@ bare: /(
         <LSQUARE><RSQUARE>
         <SINGLE><DOUBLE>
         <COMMA>
-        <HASH>
     ]+
 )/
+
+ws: /(: <WS> | <comment> )/
+
+comment: / <HASH> <SPACE> <ANY>* <BREAK> /
 ...
 
 ###############################################################################
@@ -74,7 +77,7 @@ use base 'Pegex::Receiver';
 use boolean;
 
 sub got_string {"$_[1]"}
-sub got_map { +{ map {($_->[0], $_->[1])} @{@_[1]->[0]} } }
+sub got_map { +{ map {($_->[0], $_->[1])} @{$_[1]->[0]} } }
 sub got_seq { $_[1]->[0] }
 sub got_bare {
     $_ = pop;
