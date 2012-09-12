@@ -1,3 +1,6 @@
+use strict;
+use warnings;
+
 package DJSON;
 
 use Pegex;
@@ -6,11 +9,9 @@ our $VERSION = '0.0.1';
 use base 'Exporter';
 our @EXPORT = qw(decode_djson);
 
-sub djson_grammar;
-
 sub decode_djson {
     pegex(
-        djson_grammar,
+        djson_grammar(),
         { receiver => 'DJSON::Receiver' },
     )->parse($_[0]);
 }
@@ -21,22 +22,22 @@ use constant djson_grammar => <<'...';
 
 djson: map | seq | list
 
-node: map | seq | list | scalar
+node: map | seq | scalar
 
 map:
-    / ~ <LCURLY> ~ /
-    pair* scalar?
-    / ~ <RCURLY> ~ /
+    ~LCURLY~
+    pair*
+    ~RCURLY~
 
-pair: string ~~ node
+pair: string ~~ node~
 
 seq:
-    / ~ <LSQUARE> ~ /
-    node* %% / ~ <COMMA>? ~ /
-    / ~ <RSQUARE> ~ /
+    ~LSQUARE~
+    node* %% /~<COMMA>?~/
+    ~RSQUARE~
 
 list:
-    scalar* %% / ~ <COMMA>? ~ /
+    node* %% /~<COMMA>?~/
 
 scalar:
     number |
@@ -58,13 +59,20 @@ single: /
     <SINGLE>
 /
 
-bare: /(<NS>+)/
+bare: /(
+    [^
+        <WS>
+        <LCURLY><RCURLY>
+        <LSQUARE><RSQUARE>
+    ]+
+)/
 
 number: /(
     <DASH>?
     (: 0 | [1-9] <DIGIT>* )
     (: <DOT> <DIGIT>* )?
     (: [eE] [<DASH><PLUS>]? <DIGIT>+ )?
+    (= <WS> | <COMMA>)
 )/
 
 boolean: true | false
@@ -81,28 +89,24 @@ null: /null/
 ###############################################################################
 package DJSON::Receiver;
 use base 'Pegex::Receiver';
+use boolean;
 
-# Receiving ('got_') methods can be defined for each rule, and get called
-# after a match. But often the default shape of the data is fine, and a method
-# need not be implemented for every rule.
-sub got_rulename {
+sub got_map {
     my ($self, $data) = @_;
-    # ... change data if needed
-    return $data;
+    $data = $data->[0];
+    my $map = {};
+    for my $pair (@$data) {
+        $map->{$pair->[0]} = $pair->[1];
+    }
+    return $map;
 }
 
-# Two special methods: 'initial' and 'final' can be defined and get called
-# before and after a successful parse.
+sub got_seq {
+    my ($self, $data) = @_;
+    return $data->[0];
+}
 
-# sub initial {
-#     my ($self) = @_;
-#     # Do initialization tasks
-# }
-
-# sub final {
-#     my ($self, $data) = @_;
-#     # Perform last rites on $data
-#     return $data;
-# }
-
+sub got_number { return $_[1] + 0 }
+sub got_true { return true }
+sub got_false { return false }
 sub got_null { return undef }

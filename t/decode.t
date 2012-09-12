@@ -16,7 +16,11 @@ sub json_decode {
 }
 
 sub yaml {
-    YAML::Dump $_[0]->value;
+    my $yaml = YAML::Dump $_[0]->value;
+    $yaml =~
+        s{!!perl/scalar:JSON::XS::Boolean}
+        {!!perl/scalar:boolean}g;
+    return $yaml;
 }
 
 __DATA__
@@ -25,7 +29,6 @@ __DATA__
 *djson.djson_decode.yaml == *json.json_decode.yaml;
 
 === String splitting 1
-# --- ONLY
 --- djson: foo bar baz
 --- json: [ "foo", "bar", "baz" ]
 
@@ -103,56 +106,56 @@ allow hosts [ jules sherlock kitty ]
 
 === activitystrea.ms example
 --- djson
+{
 published 2011-02-10T15:04:55Z
-actor {
-  url http://example.org/martin
-  objectType person
-  id tag:example.org,2011:martin
-  image {
-    url http://example.org/martin/image
-    width 250
-    height 250
+  actor {
+    url http://example.org/martin
+    objectType person
+    id tag:example.org,2011:martin
+    image {
+      url http://example.org/martin/image
+      width 250
+      height 250
+    }
+    displayName "Martin Smith"
   }
-  displayName "Martin Smith"
-}
-verb post
-object {
-  url http://example.org/blog/2011/02/entry
-  id tag:example.org,2011:abc123/xyz
-}
-target {
-  url http://example.org/blog/
-  objectType blog
-  id tag:example.org,2011:abc123
-  displayName "Martin's Blog"
+  verb post
+  object {
+    url http://example.org/blog/2011/02/entry
+    id tag:example.org,2011:abc123/xyz
+  }
+  target {
+    url http://example.org/blog/
+    objectType blog
+    id tag:example.org,2011:abc123
+    displayName "Martin's Blog"
+  }
 }
 
 --- json
-[
-  {
-    "published": "2011-02-10T15:04:55Z",
-    "actor": {
-      "url": "http://example.org/martin",
-      "objectType" : "person",
-      "id": "tag:example.org,2011:martin",
-      "image": {
-        "url": "http://example.org/martin/image",
-        "width": 250,
-        "height": 250
-      },
-      "displayName": "Martin Smith"
+{
+  "published": "2011-02-10T15:04:55Z",
+  "actor": {
+    "url": "http://example.org/martin",
+    "objectType" : "person",
+    "id": "tag:example.org,2011:martin",
+    "image": {
+      "url": "http://example.org/martin/image",
+      "width": 250,
+      "height": 250
     },
-    "verb": "post",
-    "object" : {
-      "url": "http://example.org/blog/2011/02/entry",
-      "id": "tag:example.org,2011:abc123/xyz"
-    },
-    "target" : {
-      "url": "http://example.org/blog/",
-      "objectType": "blog",
-      "id": "tag:example.org,2011:abc123",
-      "displayName": "Martin's Blog"
-    }
+    "displayName": "Martin Smith"
+  },
+  "verb": "post",
+  "object" : {
+    "url": "http://example.org/blog/2011/02/entry",
+    "id": "tag:example.org,2011:abc123/xyz"
+  },
+  "target" : {
+    "url": "http://example.org/blog/",
+    "objectType": "blog",
+    "id": "tag:example.org,2011:abc123",
+    "displayName": "Martin's Blog"
   }
-]
+}
 
