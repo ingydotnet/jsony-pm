@@ -26,7 +26,11 @@ sub yaml {
 __DATA__
 %TestML 1.0
 
+# Make sure the djson parses to what we expect:
 *djson.djson_decode.yaml == *json.json_decode.yaml;
+
+# Make sure DJSON parses the JSON form the same as a JSON parser:
+*json.djson_decode.yaml == *json.json_decode.yaml;
 
 === String splitting 1
 --- djson: foo bar baz
