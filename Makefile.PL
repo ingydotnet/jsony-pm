@@ -12,5 +12,6 @@ WriteMakefile(
     'TestML' => 0,
     'YAML' => 0,
     'JSON' => 0,
-  }
+  },
+  clean => { FILES => 'MANIFEST' },
 );
