@@ -92,3 +92,75 @@ sub got_bare {
     )$/x ? ($_ + 0) :
     "$_"
 }
+
+=encoding utf8
+
+=head1 NAME
+
+DJSON - The Degenerate JSON Data Language
+
+=head1 SYNOPSIS
+
+    use DJSON;
+
+    my $data = decode_djson $djson_string;
+
+=head1 DESCRIPTION
+
+DJSON is a data language that is simlar to JSON, just more chill. All valid
+JSON is also valid DJSON (and represents the same thing when deocded), but
+DJSON lets you omit a lot of the syntax that makes JSON a pain to write.
+
+=head1 DJSON SYNTAX
+
+Here is some examples of DJSON followed by equivalent JSON:
+
+Words don't need quotes. A list of things is an array:
+
+    foo bar baz
+
+    [ "foo", "bar", "baz" ]
+
+Strings with spaces can use single or double quotes:
+
+    'foo bar'      # <= This is (a comment indicating) a string
+    # More commenting
+    "baz  boom "
+
+    [ "foo bar ", "baz  boom " ]
+
+Hashes still need curly braces:
+
+    {
+        foo { bar baz }
+        num -1.2e3
+    }
+
+    { "foo": { "bar": "baz" }, "num": -1.2e3 }
+
+More soon...
+
+NOTE: You may want to look at the tests (especially C<t/decode.t>) to see the
+full abilities of DJSON.
+
+=head1 STATUS
+
+B<BEWARE!!!>
+
+DJSON is mst's idea, and ingy's Pegex based implementation. The language is
+just a baby, and will change a lot, or may go away entirely.
+
+=head1 AUTHORS
+
+Ingy döt Net (ingy) <ingy@cpan.org>
+
+Matt S. Trout (mst) <mst@shadowcat.co.uk>
+
+=head1 COPYRIGHT
+
+Copyright (c) 2011 Ingy döt Net
+
+=head1 LICENSE
+
+This library is free software and may be distributed under the same terms as
+perl itself.
