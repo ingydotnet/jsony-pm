@@ -1,0 +1,60 @@
+%grammar jsony
+%version 0.0.1
+
+jsony:
+    seq | map | top_seq | top_map | list
+
+node: map | seq | scalar
+
+map:
+    ~LCURLY~
+    pair*
+    ~RCURLY~
+
+pair: string /~<COLON>?~/ node /~<COMMA>?~/
+
+seq:
+    ~LSQUARE~
+    node* %% /~<COMMA>?~/
+    ~RSQUARE~
+
+top_seq: top_seq_entry+
+
+top_seq_entry:
+    /~ <DASH> <SPACE>+ /
+    ( node* %% / <SPACE>+ / ( <comment> | <EOL> ) )
+
+top_map:
+    (string /~<COLON>~/ node ~)+
+
+list: node* %% /~<COMMA>?~/
+
+scalar: double | single | bare
+
+string: scalar
+
+double: /
+    <DOUBLE>
+    ([^ <DOUBLE> ]*)
+    <DOUBLE>
+/
+
+single: /
+    <SINGLE>
+    ([^ <SINGLE> ]*)
+    <SINGLE>
+/
+
+bare: /( [^ <excludes> ]* [^ <excludes> <COLON> ] )/
+
+excludes: /
+    <WS>
+    <LCURLY><RCURLY>
+    <LSQUARE><RSQUARE>
+    <SINGLE><DOUBLE>
+    <COMMA>
+/
+
+ws: /(: <WS> | <comment> )/
+
+comment: / <HASH> <SPACE> <ANY>* <BREAK> /

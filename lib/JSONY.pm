@@ -2,108 +2,23 @@ use strict;
 use warnings;
 
 package JSONY;
+our $VERSION = '0.0.1';
 
-use Pegex;
-our $VERSION = '0.0.2';
+use Pegex::Parser;
+use JSONY::Grammar;
+use JSONY::Receiver;
 
 use base 'Exporter';
 our @EXPORT = qw(decode_jsony);
 
 sub decode_jsony {
-    pegex(
-        jsony_grammar(),
-        { receiver => 'JSONY::Receiver' },
+    Pegex::Parser->new(
+        grammar => JSONY::Grammar->new,
+        receiver => JSONY::Receiver->new,
     )->parse($_[0]);
 }
 
-use constant jsony_grammar => <<'...';
-%grammar jsony
-%version 0.0.1
-
-jsony:
-    seq | map | top_seq | top_map | list
-
-node: map | seq | scalar
-
-map:
-    ~LCURLY~
-    pair*
-    ~RCURLY~
-
-pair: string /~<COLON>?~/ node /~<COMMA>?~/
-
-seq:
-    ~LSQUARE~
-    node* %% /~<COMMA>?~/
-    ~RSQUARE~
-
-top_seq: top_seq_entry+
-
-top_seq_entry:
-    /~ <DASH> <SPACE>+ /
-    ( node* %% / <SPACE>+ / ( <comment> | <EOL> ) )
-
-top_map:
-    (string /~<COLON>~/ node ~)+
-
-list: node* %% /~<COMMA>?~/
-
-scalar: double | single | bare
-
-string: scalar
-
-double: /
-    <DOUBLE>
-    ([^ <DOUBLE> ]*)
-    <DOUBLE>
-/
-
-single: /
-    <SINGLE>
-    ([^ <SINGLE> ]*)
-    <SINGLE>
-/
-
-bare: /( [^ <excludes> ]* [^ <excludes> <COLON> ] )/
-
-excludes: /
-    <WS>
-    <LCURLY><RCURLY>
-    <LSQUARE><RSQUARE>
-    <SINGLE><DOUBLE>
-    <COMMA>
-/
-
-ws: /(: <WS> | <comment> )/
-
-comment: / <HASH> <SPACE> <ANY>* <BREAK> /
-...
-
-###############################################################################
-# The receiver class can reshape the data at any given rule match.
-###############################################################################
-package JSONY::Receiver;
-use base 'Pegex::Receiver';
-use boolean;
-
-sub got_top_seq_entry { $_[1][0][0] }
-sub got_top_map { $_[0]->got_map([$_[1]]) }
-sub got_seq { $_[1]->[0] }
-sub got_map { +{ map {($_->[0], $_->[1])} @{$_[1]->[0]} } }
-sub got_string {"$_[1]"}
-sub got_bare {
-    $_ = pop;
-    /true/ ? true :
-    /false/ ? false :
-    /null/ ? undef :
-    /^(
-        -?
-        (?: 0 | [1-9] [0-9]* )
-        (?: \. [0-9]* )?
-        (?: [eE] [\-\+]? [0-9]+ )?
-    )$/x ? ($_ + 0) :
-    "$_"
-}
+1;
 
 =encoding utf8
 
