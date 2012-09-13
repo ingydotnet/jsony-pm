@@ -13,5 +13,5 @@ WriteMakefile(
     'YAML' => 0,
     'JSON' => 0,
   },
-  clean => { FILES => 'MANIFEST' },
+  clean => { FILES => 'MANIFEST DJSON*' },
 );
