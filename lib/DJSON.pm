@@ -4,7 +4,7 @@ use warnings;
 package DJSON;
 
 use Pegex;
-our $VERSION = '0.0.1';
+our $VERSION = '0.0.2';
 
 use base 'Exporter';
 our @EXPORT = qw(decode_djson);
@@ -20,7 +20,8 @@ use constant djson_grammar => <<'...';
 %grammar djson
 %version 0.0.1
 
-djson: map | seq | list
+djson:
+    seq | map | top_seq | top_map | list
 
 node: map | seq | scalar
 
@@ -35,6 +36,15 @@ seq:
     ~LSQUARE~
     node* %% /~<COMMA>?~/
     ~RSQUARE~
+
+top_seq: top_seq_entry+
+
+top_seq_entry:
+    /~ <DASH> <SPACE>+ /
+    ( node* %% / <SPACE>+ / ( <comment> | <EOL> ) )
+
+top_map:
+    (string /~<COLON>~/ node ~)+
 
 list: node* %% /~<COMMA>?~/
 
@@ -54,15 +64,15 @@ single: /
     <SINGLE>
 /
 
-bare: /(
-    [^
-        <WS>
-        <LCURLY><RCURLY>
-        <LSQUARE><RSQUARE>
-        <SINGLE><DOUBLE>
-        <COMMA>
-    ]+
-)/
+bare: /( [^ <excludes> ]* [^ <excludes> <COLON> ] )/
+
+excludes: /
+    <WS>
+    <LCURLY><RCURLY>
+    <LSQUARE><RSQUARE>
+    <SINGLE><DOUBLE>
+    <COMMA>
+/
 
 ws: /(: <WS> | <comment> )/
 
@@ -76,9 +86,11 @@ package DJSON::Receiver;
 use base 'Pegex::Receiver';
 use boolean;
 
-sub got_string {"$_[1]"}
-sub got_map { +{ map {($_->[0], $_->[1])} @{$_[1]->[0]} } }
+sub got_top_seq_entry { $_[1][0][0] }
+sub got_top_map { $_[0]->got_map([$_[1]]) }
 sub got_seq { $_[1]->[0] }
+sub got_map { +{ map {($_->[0], $_->[1])} @{$_[1]->[0]} } }
+sub got_string {"$_[1]"}
 sub got_bare {
     $_ = pop;
     /true/ ? true :
