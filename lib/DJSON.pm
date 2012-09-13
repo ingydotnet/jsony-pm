@@ -150,6 +150,9 @@ B<BEWARE!!!>
 DJSON is mst's idea, and ingy's Pegex based implementation. The language is
 just a baby, and will change a lot, or may go away entirely.
 
+Development people are currently working on this in C<#pegex> in
+irc.freenode.net. Please drop by.
+
 =head1 AUTHORS
 
 Ingy döt Net (ingy) <ingy@cpan.org>
