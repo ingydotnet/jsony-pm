@@ -2,13 +2,13 @@ use TestML -run,
     -require_or_skip => 'JSON',
     -require_or_skip => 'YAML';
 
-use DJSON;
+use JSONY;
 use JSON;
 use YAML;
 # $Pegex::Parser::Debug = 1;
 
-sub djson_decode {
-    decode_djson $_[0]->value;
+sub jsony_decode {
+    decode_jsony $_[0]->value;
 }
 
 sub json_decode {
@@ -26,36 +26,36 @@ sub yaml {
 __DATA__
 %TestML 1.0
 
-# Make sure the djson parses to what we expect:
-*djson.djson_decode.yaml == *json.json_decode.yaml;
+# Make sure the JSONY parses to what we expect:
+*jsony.jsony_decode.yaml == *json.json_decode.yaml;
 
-# Make sure DJSON parses the JSON form the same as a JSON parser:
-*json.djson_decode.yaml == *json.json_decode.yaml;
+# Make sure JSONY parses the JSON form the same as a JSON parser:
+*json.jsony_decode.yaml == *json.json_decode.yaml;
 
 === String splitting 1
---- djson: foo bar baz
+--- jsony: foo bar baz
 --- json: [ "foo", "bar", "baz" ]
 
 === String splitting 2
---- djson
+--- jsony
 foo bar
 baz
 --- json: [ "foo", "bar", "baz" ]
 
 === String splitting 3
---- djson: foo "bar baz"
+--- jsony: foo "bar baz"
 --- json: [ "foo", "bar baz" ]
 
 === Number conversion
---- djson: foo 3 bar
+--- jsony: foo 3 bar
 --- json: [ "foo", 3, "bar" ]
 
 === Specials
---- djson: one true two false three null
+--- jsony: one true two false three null
 --- json: [ "one", true, "two", false, "three", null ]
 
 === Object 1
---- djson
+--- jsony
 { foo bar baz 1 }
 --- json
 {
@@ -64,7 +64,7 @@ baz
 }
 
 === Object 2
---- djson
+--- jsony
 plugin Server {
   host example.com
   port 8080
@@ -84,13 +84,13 @@ plugin Frobnicator {
 ]
 
 === Log line example
---- djson
+--- jsony
 2012-09-10T17:00:34 /users/bob/edit { user admin }
 --- json
 [ "2012-09-10T17:00:34", "/users/bob/edit", { "user": "admin" } ]
 
 === Config file example
---- djson
+--- jsony
 plugin Server {
   host example.com
   port 8080
@@ -109,7 +109,7 @@ allow hosts [ jules sherlock kitty ]
 ]
 
 === activitystrea.ms example
---- djson
+--- jsony
 {
 published 2011-02-10T15:04:55Z
   actor {
@@ -164,7 +164,7 @@ published 2011-02-10T15:04:55Z
 }
 
 === Comments
---- djson
+--- jsony
 foo bar     # comment
 \# Comment
 url http://xyz.com#not_comment

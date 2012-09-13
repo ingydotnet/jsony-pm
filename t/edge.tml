@@ -1,27 +1,27 @@
-# These DJSON streams need JSON equivalence, or need to be declared as
+# These JSONY streams need JSON equivalence, or need to be declared as
 # decoding (parsing) errors:
 
 === Empty Stream
---- djson: ''
+--- jsony: ''
 
 === Whitespace Stream
---- djson: '              '
+--- jsony: '              '
 
 === Collections as mapping keys
---- djson
+--- jsony
 {
       [foo bar] baz
         {foo bar} baz
 }
 
 === Duplicate mapping keys
---- djson: { foo foo foo foo }
+--- jsony: { foo foo foo foo }
 
 === Odd number of nodes in mapping
---- djson: { foo bar baz }
+--- jsony: { foo bar baz }
 
-=== Semis and commas in djson
---- djson
+=== Semis and commas in jsony
+--- jsony
 {
        foo: bar, baz
           do :re ,mi
@@ -29,18 +29,18 @@
 }
 
 === Comment syntax
---- djson
+--- jsony
 /* comment */
 # comment
 What happens?
 
 === Unterminated Quotes
---- djson
+--- jsony
 {
       name 'Ingy dot Net
         size 42
 }
 
 === Unquoted punctuation
---- djson
+--- jsony
 ! @ # $ % ^ { & * ( | }'}

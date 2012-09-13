@@ -1,11 +1,11 @@
 use Test::More tests => 1;
 
-use DJSON;
+use JSONY;
 
-open DJSON, 'Changes' or die "Can't open 'Changes' for input";
+open JSONY, 'Changes' or die "Can't open 'Changes' for input";
 
-my $djson = do { local $/; <DJSON> };
+my $jsony = do { local $/; <JSONY> };
 
-decode_djson($djson);
+decode_jsony($jsony);
 
-pass 'Changes file is valid DJSON';
+pass 'Changes file is valid JSONY';

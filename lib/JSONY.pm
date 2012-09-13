@@ -1,26 +1,26 @@
 use strict;
 use warnings;
 
-package DJSON;
+package JSONY;
 
 use Pegex;
 our $VERSION = '0.0.2';
 
 use base 'Exporter';
-our @EXPORT = qw(decode_djson);
+our @EXPORT = qw(decode_jsony);
 
-sub decode_djson {
+sub decode_jsony {
     pegex(
-        djson_grammar(),
-        { receiver => 'DJSON::Receiver' },
+        jsony_grammar(),
+        { receiver => 'JSONY::Receiver' },
     )->parse($_[0]);
 }
 
-use constant djson_grammar => <<'...';
-%grammar djson
+use constant jsony_grammar => <<'...';
+%grammar jsony
 %version 0.0.1
 
-djson:
+jsony:
     seq | map | top_seq | top_map | list
 
 node: map | seq | scalar
@@ -82,7 +82,7 @@ comment: / <HASH> <SPACE> <ANY>* <BREAK> /
 ###############################################################################
 # The receiver class can reshape the data at any given rule match.
 ###############################################################################
-package DJSON::Receiver;
+package JSONY::Receiver;
 use base 'Pegex::Receiver';
 use boolean;
 
@@ -109,23 +109,23 @@ sub got_bare {
 
 =head1 NAME
 
-DJSON - The Degenerate JSON Data Language
+JSONY - Relaxed JSON with a little bit of YAML
 
 =head1 SYNOPSIS
 
-    use DJSON;
+    use JSONY;
 
-    my $data = decode_djson $djson_string;
+    my $data = decode_jsony $jsony_string;
 
 =head1 DESCRIPTION
 
-DJSON is a data language that is simlar to JSON, just more chill. All valid
-JSON is also valid DJSON (and represents the same thing when deocded), but
-DJSON lets you omit a lot of the syntax that makes JSON a pain to write.
+JSONY is a data language that is simlar to JSON, just more chill. All valid
+JSON is also valid JSONY (and represents the same thing when deocded), but
+JSONY lets you omit a lot of the syntax that makes JSON a pain to write.
 
-=head1 DJSON SYNTAX
+=head1 JSONY SYNTAX
 
-Here is some examples of DJSON followed by equivalent JSON:
+Here is some examples of JSONY followed by equivalent JSON:
 
 Words don't need quotes. A list of things is an array:
 
@@ -153,16 +153,16 @@ Hashes still need curly braces:
 More soon...
 
 NOTE: You may want to look at the tests (especially C<t/decode.t>) to see the
-full abilities of DJSON.
+full abilities of JSONY.
 
 =head1 STATUS
 
 B<BEWARE!!!>
 
-DJSON is mst's idea, and ingy's Pegex based implementation. The language is
+JSONY is mst's idea, and ingy's Pegex based implementation. The language is
 just a baby, and will change a lot, or may go away entirely.
 
-Development people are currently working on this in C<#pegex> in
+Development people are currently working on this in C<#jsony> in
 irc.freenode.net. Please drop by.
 
 =head1 AUTHORS

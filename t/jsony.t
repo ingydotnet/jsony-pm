@@ -2,13 +2,13 @@ use TestML -run,
     -require_or_skip => 'JSON',
     -require_or_skip => 'YAML';
 
-use DJSON;
+use JSONY;
 use JSON;
 use YAML;
 # $Pegex::Parser::Debug = 1;
 
-sub djson_decode {
-    decode_djson $_[0]->value;
+sub jsony_decode {
+    decode_jsony $_[0]->value;
 }
 
 sub json_decode {
@@ -26,17 +26,17 @@ sub yaml {
 __DATA__
 %TestML 1.0
 
-# Make sure the djson parses to what we expect:
-*djson.djson_decode.yaml == *json.json_decode.yaml;
+# Make sure the JSONY parses to what we expect:
+*jsony.jsony_decode.yaml == *json.json_decode.yaml;
 
 === Top Level Mapping
---- djson
+--- jsony
 foo: bar
 baz: 42
 --- json: {"foo": "bar", "baz": 42}
 
 === Top Level Sequence
---- djson
+--- jsony
 - foo bar
 - foo bar
 --- json: [["foo", "bar"],["foo", "bar"]]
