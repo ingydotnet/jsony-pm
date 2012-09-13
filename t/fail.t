@@ -1,11 +1,6 @@
-use TestML -run;
-
-use JSONY;
+use TestML -run,
+    -bridge => 't::TestML_JSONY';
 # $Pegex::Parser::Debug = 1;
-
-sub jsony_decode {
-    decode_jsony $_[0]->value;
-}
 
 __DATA__
 %TestML 1.0
