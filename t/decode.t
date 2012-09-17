@@ -155,3 +155,15 @@ url http://xyz.com#not_comment
     "http://xyz.com#not_comment"
 ]
 
+=== Top Level Mapping
+--- jsony
+foo: bar
+baz: 42
+--- json: {"foo": "bar", "baz": 42}
+
+=== Top Level Sequence
+--- jsony
+- foo bar
+- foo bar
+--- json: [["foo", "bar"],["foo", "bar"]]
+
