@@ -22,7 +22,10 @@ top_seq: top_seq_entry+
 
 top_seq_entry:
     /~ <DASH> <SPACE>+ /
-    ( node* %% / <SPACE>+ / ( <comment> | <EOL> ) )
+    (
+        node* %% / (: <SPACE>* <COMMA> <SPACE>* <EOL> ~ | <SPACE>+ ) /
+        ( <comment> | <EOL> )
+    )
 
 top_map:
     (string /~<COLON>~/ node ~)+

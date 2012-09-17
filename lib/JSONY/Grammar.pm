@@ -196,7 +196,7 @@ sub make_tree {
               '.ref' => 'node',
               '.sep' => {
                 '+eok' => 1,
-                '.rgx' => qr/(?-xism:\G\ +)/
+                '.rgx' => qr/(?-xism:\G(?:\ *,\ *\r?\n(?:\s|(?:\#\ .*\r?\n|\#\ *\r?\n|\ *\r?\n))*|\ +))/
               }
             },
             {
