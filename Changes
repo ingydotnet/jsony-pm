@@ -1,6 +1,6 @@
 # This Changes log is JSONY!
 
-- 0.0.2 'Thu Sep 13 12:29:33 PDT 2012',
+- 0.0.2 'Mon Sep 17 12:18:51 PDT 2012',
      'Add specific versions to the prerequisite modules',
      'Support real double quote stings in grammar',
      'Support continuation lines in top level seqs'
