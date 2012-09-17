@@ -30,7 +30,7 @@ sub make_tree {
       '.rgx' => qr/(?-xism:\G(?:\#\ .*\r?\n|\#\ *\r?\n|\ *\r?\n))/
     },
     'double' => {
-      '.rgx' => qr/(?-xism:\G"([^"]*)")/
+      '.rgx' => qr/(?-xism:\G"((?:\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})|[^"\x00-\x1f])*)")/
     },
     'jsony' => {
       '.any' => [
