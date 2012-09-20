@@ -1,5 +1,9 @@
 # This Changes log is JSONY!
 
+- 0.0.4 'Wed Sep 19 19:33:01 PDT 2012',
+    'Update docs',
+    'Fix copyright year per supplicant++',
+    'Require boolean.pm per cpantesters++ :)'
 - 0.0.3 'Mon Sep 17 12:27:09 PDT 2012',
     'Change README'
 - 0.0.2 'Mon Sep 17 12:18:51 PDT 2012',

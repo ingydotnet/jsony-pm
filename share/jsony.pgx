@@ -83,6 +83,6 @@ ws: /(: <WS> | <comment> )/
 
 comment: /(:
     <HASH> <SPACE> <ANY>* <EOL> |
-    <HASH> <SPACE>* <EOL> |
+    <HASH> <EOL> |
     <SPACE>* <EOL>
 )/
