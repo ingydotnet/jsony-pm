@@ -4,7 +4,7 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile(
   NAME => 'JSONY',
-  VERSION => '0.0.4',
+  VERSION => '0.0.5',
   PREREQ_PM => {
     'Pegex' => '0.20',
     'boolean' => '0.28',

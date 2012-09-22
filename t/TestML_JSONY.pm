@@ -16,7 +16,7 @@ sub json_decode {
 sub yaml {
     my $yaml = YAML::Dump $_[0]->value;
     $yaml =~
-        s{!!perl/scalar:JSON::XS::Boolean}
+        s{!!perl/scalar:JSON::(?:XS::|PP::|)Boolean}
         {!!perl/scalar:boolean}g;
     return $yaml;
 }

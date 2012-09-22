@@ -1,5 +1,7 @@
 # This Changes log is JSONY!
 
+- 0.0.5 'Sat Sep 22 14:09:49 PDT 2012',
+    'Account for JSON::PP in tests',
 - 0.0.4 'Wed Sep 19 19:33:01 PDT 2012',
     'Update docs',
     'Fix copyright year per supplicant++',
