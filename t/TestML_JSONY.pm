@@ -15,9 +15,15 @@ sub json_decode {
 
 sub yaml {
     my $yaml = YAML::Dump $_[0]->value;
+
+    # Account for various JSONs
     $yaml =~
-        s{!!perl/scalar:JSON::(?:XS::|PP::|)Boolean}
+        s{!!perl/scalar:JSON::(?:XS::|PP::|backportPP::|)Boolean}
         {!!perl/scalar:boolean}g;
+
+    # XXX Floating point discrepancy hack
+    $yaml =~ s/\.000+1//g;
+
     return $yaml;
 }
 
