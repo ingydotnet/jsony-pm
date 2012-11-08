@@ -2,7 +2,7 @@
 # The receiver class can reshape the data at any given rule match.
 ###############################################################################
 package JSONY::Receiver;
-use base 'Pegex::Receiver';
+use base 'Pegex::Tree';
 use boolean;
 
 sub got_top_seq_entry { $_[1][0][0] }

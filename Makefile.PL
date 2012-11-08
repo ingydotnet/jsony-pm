@@ -6,7 +6,7 @@ WriteMakefile(
   NAME => 'JSONY',
   VERSION => '0.0.6',
   PREREQ_PM => {
-    'Pegex' => '0.20',
+    'Pegex' => '0.21',
     'boolean' => '0.28',
   },
   BUILD_REQUIRES => {
