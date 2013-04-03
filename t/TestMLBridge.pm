@@ -1,20 +1,24 @@
-package t::TestML_JSONY;
-use strict;
+package TestMLBridge;
+use base 'TestML::Bridge';
+use TestML::Util;
 
 use JSONY;
 use JSON;
 use YAML;
 
 sub jsony_decode {
-    decode_jsony $_[0]->value;
+    my ($self, $jsony) = @_;
+    return native decode_jsony $jsony->value;
 }
 
 sub json_decode {
-    decode_json $_[0]->value;
+    my ($self, $json) = @_;
+    return native decode_json $json->value;
 }
 
 sub yaml {
-    my $yaml = YAML::Dump $_[0]->value;
+    my ($self, $object) = @_;
+    my $yaml = YAML::Dump $object->value;
 
     # Account for various JSONs
     $yaml =~
@@ -24,7 +28,7 @@ sub yaml {
     # XXX Floating point discrepancy hack
     $yaml =~ s/\.000+1//g;
 
-    return $yaml;
+    return str $yaml;
 }
 
 1;
