@@ -12,9 +12,9 @@ sub got_map { +{ map {($_->[0], $_->[1])} @{$_[1]->[0]} } }
 sub got_string {"$_[1]"}
 sub got_bare {
     $_ = pop;
-    /true/ ? true :
-    /false/ ? false :
-    /null/ ? undef :
+    /^true$/ ? true :
+    /^false$/ ? false :
+    /^null$/ ? undef :
     /^(
         -?
         (?: 0 | [1-9] [0-9]* )
