@@ -3,6 +3,6 @@ use TestML;
 use TestMLBridge;
 
 TestML->new(
-    testml => 'testml/decode.tml',
+    testml => 'testml/load.tml',
     bridge => 'TestMLBridge',
 )->run;

@@ -2,20 +2,32 @@ use strict;
 use warnings;
 
 package JSONY;
-our $VERSION = '0.0.7';
+our $VERSION = '0.0.8';
 
 use Pegex::Parser;
 use JSONY::Grammar;
 use JSONY::Receiver;
 
-use base 'Exporter';
-our @EXPORT = qw(decode_jsony);
+# XXX Old API has been removed, but warning for now.
+{
+    use base 'Exporter';
+    our @EXPORT = qw(decode_jsony);
 
-sub decode_jsony {
+    sub decode_jsony {
+        require Carp;
+        Carp::croak("The decode_jsony() API has been replaced by JSONY->new->load()");
+    }
+}
+
+sub new {
+    bless {}, $_[0];
+}
+
+sub load {
     Pegex::Parser->new(
         grammar => JSONY::Grammar->new,
         receiver => JSONY::Receiver->new,
-    )->parse($_[0]);
+    )->parse($_[1]);
 }
 
 1;
@@ -30,18 +42,18 @@ JSONY - Relaxed JSON with a little bit of YAML
 
     use JSONY;
 
-    my $data = decode_jsony $jsony_string;
+    my $data = JSONY->new->load($jsony_string);
 
 =head1 DESCRIPTION
 
 JSONY is a data language that is simlar to JSON, just more chill. All valid
-JSON is also valid JSONY (and represents the same thing when decoded), but
+JSON is also valid JSONY (and represents the same thing when loaded), but
 JSONY lets you omit a lot of the syntax that makes JSON a pain to write.
 
 =head1 API
 
-JSONY exports one function: C<decode_jsony>. You pass it a JSONY string and it
-returns the decoded Perl data object.
+JSONY has one object method: C<load>. You pass it a JSONY string and it returns
+the loaded Perl data object.
 
 =head1 JSONY SYNTAX
 
@@ -88,7 +100,7 @@ square brackets.
 
 More soon...
 
-NOTE: You may want to look at the tests (especially C<t/decode.t>) to see the
+NOTE: You may want to look at the tests (especially C<t/load.t>) to see the
 full abilities of JSONY.
 
 =head1 STATUS
@@ -111,7 +123,7 @@ Matt S. Trout (mst) <mst@shadowcat.co.uk>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2012 Ingy döt Net
+Copyright (c) 2012, 2013 Ingy döt Net
 
 =head1 LICENSE
 

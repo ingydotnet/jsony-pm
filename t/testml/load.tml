@@ -1,10 +1,10 @@
 %TestML 0.1.0
 
 # Make sure the JSONY parses to what we expect:
-*jsony.jsony_decode.yaml == *json.json_decode.yaml
+*jsony.jsony_load.yaml == *json.json_decode.yaml
 
 # Make sure JSONY parses the JSON form the same as a JSON parser:
-*json.jsony_decode.yaml == *json.json_decode.yaml
+*json.jsony_load.yaml == *json.json_decode.yaml
 
 === String splitting 1
 --- jsony: foo bar baz

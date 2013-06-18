@@ -6,9 +6,9 @@ use JSONY;
 use JSON;
 use YAML;
 
-sub jsony_decode {
+sub jsony_load {
     my ($self, $jsony) = @_;
-    return native decode_jsony $jsony->value;
+    return native 'JSONY'->new->load($jsony->value);
 }
 
 sub json_decode {

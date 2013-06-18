@@ -1,5 +1,8 @@
 # This Changes log is JSONY!
 
+- 0.0.8 'Mon Jun 17 12:39:27 PDT 2013',
+    'Change API to JSONY->new->load()',
+    'Fix a bug with strings containing "true"'
 - 0.0.7 'Thu Nov  8 10:44:25 PST 2012',
     'Use new Pegex-0.21'
 - 0.0.6 'Tue Oct  2 23:07:55 JST 2012',
