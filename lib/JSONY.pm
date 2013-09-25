@@ -94,8 +94,8 @@ square brackets.
 
     [
       [ "array", "of", 4, "scalars" ],
-      [ "array", "with", [ "sub", "array" { "of", "things" } ] ],
-      [ "array", "of", 7, "things", on, "two", "lines" ]
+      [ "array", "with", [ "sub", "array" { "of": "things" } ] ],
+      [ "array", "of", 7, "things", "on", "two", "lines" ]
     ]
 
 More soon...
