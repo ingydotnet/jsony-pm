@@ -4,13 +4,17 @@ NAME
 SYNOPSIS
         use JSONY;
 
-        my $data = decode_jsony $jsony_string;
+        my $data = JSONY->new->load($jsony_string);
 
 DESCRIPTION
     JSONY is a data language that is simlar to JSON, just more chill. All
     valid JSON is also valid JSONY (and represents the same thing when
-    deocded), but JSONY lets you omit a lot of the syntax that makes JSON a
+    loaded), but JSONY lets you omit a lot of the syntax that makes JSON a
     pain to write.
+
+API
+    JSONY has one object method: "load". You pass it a JSONY string and it
+    returns the loaded Perl data object.
 
 JSONY SYNTAX
     Here is some examples of JSONY followed by equivalent JSON:
@@ -29,18 +33,34 @@ JSONY SYNTAX
 
         [ "foo bar ", "baz  boom " ]
 
-    Hashes still need curly braces:
+    Top level hashes can be ':' separated pairs or use curlies. Sub hashes
+    require curlies.
 
-        {
-            foo { bar baz }
-            num -1.2e3
-        }
+        foo: { bar baz }
+        num: -1.2e3
 
         { "foo": { "bar": "baz" }, "num": -1.2e3 }
 
+    Top level arrays can use '- ' at the start of lines. Those arrays go the
+    end of line. Lines can be continued using a trailing comma. Sub arrays
+    require square brackets.
+
+        - array of 4 scalars
+        - array with [ sub
+          array { of
+          things }]
+        - array of 7 things on,
+          two lines
+
+        [
+          [ "array", "of", 4, "scalars" ],
+          [ "array", "with", [ "sub", "array" { "of": "things" } ] ],
+          [ "array", "of", 7, "things", "on", "two", "lines" ]
+        ]
+
     More soon...
 
-    NOTE: You may want to look at the tests (especially "t/decode.t") to see
+    NOTE: You may want to look at the tests (especially "t/load.t") to see
     the full abilities of JSONY.
 
 STATUS
@@ -52,13 +72,15 @@ STATUS
     Development people are currently working on this in "#jsony" in
     irc.freenode.net. Please drop by.
 
+    http://jsony.org coming soon.
+
 AUTHORS
     Ingy döt Net (ingy) <ingy@cpan.org>
 
     Matt S. Trout (mst) <mst@shadowcat.co.uk>
 
 COPYRIGHT
-    Copyright (c) 2011 Ingy döt Net
+    Copyright (c) 2012, 2013 Ingy döt Net
 
 LICENSE
     This library is free software and may be distributed under the same
