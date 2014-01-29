@@ -2,7 +2,8 @@ use strict;
 use warnings;
 
 package JSONY;
-our $VERSION = '0.0.8';
+# VERSION
+# ABSTRACT: Relaxed JSON with a little bit of YAML
 
 use Pegex::Parser;
 use JSONY::Grammar;
