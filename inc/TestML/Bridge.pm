@@ -2,8 +2,6 @@
 package TestML::Bridge;
 use TestML::Base;
 
-sub runtime {
-    $TestML::Runtime::Singleton;
-}
+use TestML::Util 'runtime';
 
 1;
