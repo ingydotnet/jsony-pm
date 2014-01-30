@@ -52,8 +52,8 @@ JSONY lets you omit a lot of the syntax that makes JSON a pain to write.
 
 =head1 API
 
-JSONY has one object method: C<load>. You pass it a JSONY string and it returns
-the loaded Perl data object.
+JSONY has one instance method: C<load>. You pass it a JSONY string and it
+returns the loaded Perl data object.
 
 =head1 JSONY SYNTAX
 
@@ -105,13 +105,10 @@ full abilities of JSONY.
 
 =head1 STATUS
 
-B<BEWARE!!!>
+JSONY has been in use for well over a year. It seems to working well.
 
-JSONY is mst's idea, and ingy's Pegex based implementation. The language is
-just a baby, and will change a lot, or may go away entirely.
-
-Development people are currently working on this in C<#jsony> in
-irc.freenode.net. Please drop by.
+Development people are working on this in C<#jsony> in irc.freenode.net. Please
+drop by.
 
 http://jsony.org coming soon.
 
@@ -123,7 +120,7 @@ Matt S. Trout (mst) <mst@shadowcat.co.uk>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2012, 2013 Ingy döt Net
+Copyright (c) 2012, 2013, 2014 Ingy döt Net
 
 =head1 LICENSE
 
