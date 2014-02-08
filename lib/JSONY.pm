@@ -3,7 +3,6 @@ use warnings;
 
 package JSONY;
 # VERSION
-# ABSTRACT: Relaxed JSON with a little bit of YAML
 
 use Pegex::Parser;
 use JSONY::Grammar;

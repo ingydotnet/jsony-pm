@@ -8,12 +8,18 @@ perl:
 - "5.8"
 
 install:
-- git clone --depth=50 --branch=master git://github.com/ingydotnet/testml-pm ../testml-pm
-- cpanm --quiet --notest Devel::Cover::Report::Coveralls
-- cpanm --quiet --notest --installdeps .
+- git clone --depth=1 --branch=master
+  git://github.com/ingydotnet/testml-pm ../testml-pm
+- cpanm --quiet --notest
+  boolean
+  JSON
+  YAML
+  Devel::Cover::Report::Coveralls
 
 script:
-- PERL5OPT=-MDevel::Cover=-coverage,statement,branch,condition,path,subroutine PERL5LIB=../testml-pm/lib prove -lv t/
+- PERL5OPT=-MDevel::Cover=-coverage,statement,branch,condition,path,subroutine
+  PERL5LIB=../testml-pm/lib
+  prove -lv t/
 - cover
 
 after_success:
