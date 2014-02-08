@@ -13,6 +13,7 @@ install:
 - cpanm --quiet --notest
   boolean
   JSON
+  Pegex
   YAML
   Devel::Cover::Report::Coveralls
 
