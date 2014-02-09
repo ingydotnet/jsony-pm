@@ -1,5 +1,9 @@
 # This Changes log is JSONY!
 
+- 0.0.9 'Sat Feb  8 19:38:58 PST 2014',
+    '*** MAJOR API CHANGE',
+    'Switch to dzil',
+    'Support 5.8.1+'
 - 0.0.8 'Mon Jun 17 12:39:27 PDT 2013',
     'Change API to JSONY->new->load()',
     'Fix a bug with strings containing "true"'
