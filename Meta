@@ -1,0 +1,37 @@
+=meta: 0.0.1
+
+name: JSONY
+version: 0.1.0
+abstract: Relaxed JSON with a little bit of YAML
+homepage: http://jsony.org
+
+license: perl
+copyright: 2012, 2013, 2014. Ingy döt Net.
+author:
+  name: Ingy döt Net
+  email: ingy@cpan.org
+  github: ingydotnet
+  twitter: ingydotnet
+  freenode: ingy
+  homepage: http://ingy.net
+
+requires:
+  perl: 5.8.1
+  Pegex: 0.30
+  boolean: 0.31
+test:
+  requires:
+    JSON: 2.90
+    YAML: 0.90
+
+devel:
+  git: git@github.org/ingydotnet/jsony-pm
+  irc: irc.freenode.net/jsony
+  bug: https://github.com/ingydotnet/jsony-pm/issues/
+
+=cpan:
+  include_testml: 1
+  ourpkgversion: 1
+  no_changes_yaml: 1
+
+=travis: perl

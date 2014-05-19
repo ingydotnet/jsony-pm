@@ -1,7 +1,7 @@
 package JSONY::Grammar;
 use base 'Pegex::Grammar';
 
-use constant file => 'share/jsony.pgx';
+use constant file => '../jsony-pgx/jsony.pgx';
 
 sub make_tree {
   {

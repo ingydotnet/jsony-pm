@@ -1,5 +1,8 @@
 # This Changes log is JSONY!
 
+- 0.1.0 'Mon May 19 15:27:51 PDT 2014',
+    'Use new Pegex',
+    'Switch to new repo format and release process'
 - 0.0.9 'Sat Feb  8 19:38:58 PST 2014',
     '*** MAJOR API CHANGE',
     'Switch to dzil',
