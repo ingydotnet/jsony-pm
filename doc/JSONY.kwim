@@ -75,6 +75,9 @@ JSONY has been in use for well over a year. It seems to working well.
 Development people are working on this in `#jsony` and `#pegex` in
 irc.freenode.net. Please drop by.
 
+JSONY.pm is a very simple Pegex-based parser. You can see the quite tiny JSONY
+grammar here: http://github.com/ingydotnet/jsony-pgx/blob/master/jsony.pgx
+
 http://jsony.org coming soon.
 
 = Authors
