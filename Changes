@@ -1,5 +1,7 @@
 # This Changes log is JSONY!
 
+- 0.1.1 'Sat Jun 14 13:21:03 PDT 2014',
+    'Switch to zilla-dist and badges'
 - 0.1.0 'Mon May 19 15:27:51 PDT 2014',
     'Use new Pegex',
     'Switch to new repo format and release process'

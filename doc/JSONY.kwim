@@ -3,6 +3,8 @@ JSONY
 
 Relaxed JSON with a little bit of YAML
 
+<badge travis coveralls ingydotnet/jsony-pm>
+
 = Synopsis
 
   use JSONY;
@@ -65,8 +67,8 @@ square brackets.
 
 More soon...
 
-NOTE: You may want to look at the tests (especially `t/load.t`) to see the
-full abilities of JSONY.
+NOTE: You may want to look at the tests (especially `t/load.t`) to see the full
+abilities of JSONY.
 
 = Status
 
