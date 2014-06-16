@@ -14,6 +14,7 @@ install:
   boolean
   JSON
   Pegex
+  TestML
   YAML
 
 script:
