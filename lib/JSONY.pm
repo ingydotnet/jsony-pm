@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 package JSONY;
-# VERSION
+our $VERSION = '0.1.3';
 
 use Pegex::Parser;
 use JSONY::Grammar;
