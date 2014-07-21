@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:ingydotnet/jsony-pgx
+	branch = master
+	commit = 50aa2b81c0fef8210baee7aa0e681f12fa8bfc0e
+	parent = 8ca53dae04e6c3a86229a9deec39387224fbaea0
+	cmdver = 0.1.0
