@@ -1,5 +1,7 @@
 # This Changes log is JSONY!
 
+- 0.1.4 'Mon Jul 21 16:30:12 PDT 2014',
+    'Add grammar as submodule and share/ it'
 - 0.1.3 'Mon Jul 21 13:53:16 PDT 2014',
     'Fix Meta and add Contributing'
 - 0.1.2 'Mon Jun 16 15:56:21 PDT 2014',
