@@ -103,7 +103,7 @@ L<http://jsony.org> coming soon.
 
 =head1 COPYRIGHT
 
-Copyright (c) 2012-2014 Ingy döt Net
+Copyright 2012-2014 Ingy döt Net
 
 =head1 LICENSE
 
