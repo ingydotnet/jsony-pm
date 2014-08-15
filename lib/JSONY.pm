@@ -1,9 +1,6 @@
-# ABSTRACT: Relaxed JSON with a little bit of YAML
-use strict;
-use warnings;
-
+use strict; use warnings;
 package JSONY;
-our $VERSION = '0.1.5';
+our $VERSION = '0.1.6';
 
 use Pegex::Parser;
 use JSONY::Grammar;

@@ -12,6 +12,7 @@ ZILD := $(PERL) -S zild
 
 ifneq (,$(shell which zild))
     NAMEPATH := $(shell $(ZILD) meta =cpan/libname)
+    NAMEPATH := $(subst ::,/,$(NAMEPATH))
 ifeq (,$(NAMEPATH))
     NAMEPATH := $(shell $(ZILD) meta name)
 endif
@@ -37,6 +38,9 @@ help:
 	@echo 'Makefile targets:'
 	@echo ''
 	@echo '    make test      - Run the repo tests'
+	@echo '    make test-dev  - Run the developer only tests'
+	@echo '    make test-all  - Run all tests'
+	@echo ''
 	@echo '    make install   - Install the dist from this repo'
 	@echo '    make prereqs   - Install the CPAN prereqs'
 	@echo '    make update    - Update generated files'
@@ -67,6 +71,13 @@ else
 	@echo "Testing not available. Use 'disttest' instead."
 endif
 
+test-dev:
+ifneq ($(wildcard test/devel),)
+	$(PERL) -S prove -lv test/devel
+endif
+
+test-all: test test-dev
+
 install: distdir
 	@echo '***** Installing $(DISTDIR)'
 	(cd $(DISTDIR); perl Makefile.PL; make install)
@@ -85,10 +96,14 @@ release:
 	make update
 	make check-release
 	make date
-	make test
+	make test-all
 	make disttest
 	@echo '***** Releasing $(DISTDIR)'
 	make dist
+ifneq ($(ZILLA_DIST_RELEASE_TIME),)
+	echo $$(( $$ZILLA_DIST_RELEASE_TIME - $$(date +%s) ))
+	sleep $$(( $$ZILLA_DIST_RELEASE_TIME - $$(date +%s) ))
+endif
 	cpan-upload $(DIST)
 	make clean
 	[ -z "$$(git status -s)" ] || zild-git-commit
@@ -167,6 +182,7 @@ check-release:
 	@echo '***** Checking readiness to release $(DIST)'
 	RELEASE_BRANCH=$(RELEASE_BRANCH) zild-check-release
 	git stash
+	rm -fr .git/rebase-apply
 	git pull --rebase origin $(RELEASE_BRANCH)
 	git stash pop
 

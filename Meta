@@ -1,7 +1,7 @@
 =meta: 0.0.1
 
 name: JSONY
-version: 0.1.5
+version: 0.1.6
 abstract: Relaxed JSON with a little bit of YAML
 homepage: http://jsony.org
 
@@ -17,7 +17,7 @@ author:
 
 requires:
   perl: 5.8.1
-  Pegex: 0.30
+  Pegex: 0.50
   boolean: 0.31
 
 test:
