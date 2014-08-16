@@ -1,7 +1,7 @@
 =meta: 0.0.2
 
 name: JSONY
-version: 0.1.9
+version: 0.1.10
 abstract: Relaxed JSON with a little bit of YAML
 homepage: http://jsony.org
 language: perl
@@ -34,8 +34,3 @@ test:
 =zild:
   include_testml: 1
   no_changes_yaml: 1
-
-=travis:
-  test:
-    requires:
-      TestML: 0

@@ -22,8 +22,8 @@ install:
   boolean
   JSON
   Pegex
-  TestML
   YAML
+  TestML
 
 script:
 - PERL5OPT=-MDevel::Cover=-coverage,statement,branch,condition,path,subroutine
