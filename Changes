@@ -1,5 +1,7 @@
 # This Changes log is JSONY!
 
+- 0.1.7 'Fri Aug 15 18:28:50 PDT 2014',
+    'Add t/000-compile-modules.t'
 - 0.1.6 'Fri Aug 15 09:38:22 PDT 2014',
     'Fix github issue #2'
 - 0.1.5 'Sun Aug  3 22:59:30 PDT 2014',

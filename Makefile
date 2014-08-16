@@ -9,6 +9,7 @@
 
 PERL ?= $(shell which perl)
 ZILD := $(PERL) -S zild
+LOG := $(PERL_ZILLA_DIST_RELEASE_LOG)
 
 ifneq (,$(shell which zild))
     NAMEPATH := $(shell $(ZILD) meta =cpan/libname)
@@ -66,7 +67,9 @@ help:
 
 test:
 ifeq ($(wildcard pkg/no-test),)
+ifneq ($(wildcard test),)
 	$(PERL) -S prove -lv test
+endif
 else
 	@echo "Testing not available. Use 'disttest' instead."
 endif
@@ -91,6 +94,9 @@ update: makefile
 	make readme contrib travis version webhooks
 
 release:
+ifneq ($(LOG),)
+	@echo "$$(date) - Release $(DIST) STARTED" >> $(LOG)
+endif
 	make self-install
 	make clean
 	make update
@@ -100,11 +106,18 @@ release:
 	make disttest
 	@echo '***** Releasing $(DISTDIR)'
 	make dist
-ifneq ($(ZILLA_DIST_RELEASE_TIME),)
-	echo $$(( $$ZILLA_DIST_RELEASE_TIME - $$(date +%s) ))
-	sleep $$(( $$ZILLA_DIST_RELEASE_TIME - $$(date +%s) ))
+ifneq ($(PERL_ZILLA_DIST_RELEASE_TIME),)
+	@echo $$(( ( $$PERL_ZILLA_DIST_RELEASE_TIME - $$(date +%s) ) / 60 )) \
+	minutes, \
+	$$(( ( $$PERL_ZILLA_DIST_RELEASE_TIME - $$(date +%s) ) % 60 )) \
+	seconds, until RELEASE TIME!
+	@echo sleep $$(( $$PERL_ZILLA_DIST_RELEASE_TIME - $$(date +%s) ))
+	@sleep $$(( $$PERL_ZILLA_DIST_RELEASE_TIME - $$(date +%s) ))
 endif
 	cpan-upload $(DIST)
+ifneq ($(LOG),)
+	@echo "$$(date) - Release $(DIST) UPLOADED" >> $(LOG)
+endif
 	make clean
 	[ -z "$$(git status -s)" ] || zild-git-commit
 	git push
@@ -115,6 +128,9 @@ endif
 	@echo
 	@[ -n "$$(which cowsay)" ] && cowsay "$(SUCCESS)" || echo "$(SUCCESS)"
 	@echo
+ifneq ($(LOG),)
+	@echo "$$(date) - Release $(DIST) COMPLETED" >> $(LOG)
+endif
 
 cpan:
 	@echo '***** Creating the `cpan/` directory'
