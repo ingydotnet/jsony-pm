@@ -1,5 +1,7 @@
 # This Changes log is JSONY!
 
+- 0.1.7 'Sat Aug 16 02:11:35 PDT 2014',
+    'Eliminate File::Basename in test/'
 - 0.1.7 'Fri Aug 15 18:28:50 PDT 2014',
     'Add t/000-compile-modules.t'
 - 0.1.6 'Fri Aug 15 09:38:22 PDT 2014',
