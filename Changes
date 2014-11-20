@@ -1,5 +1,7 @@
 # This Changes log is JSONY!
 
+- 0.1.13 'Thu Nov 20 14:43:11 PST 2014',
+    'Apply PR #5. Doc typo.'
 - 0.1.12 'Thu Nov 20 14:04:52 PST 2014',
     'Fix issue #3. Terminal comment w/o trailing newline.'
 - 0.1.11 'Thu Nov 20 11:28:12 PST 2014',
