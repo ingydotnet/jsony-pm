@@ -1,6 +1,6 @@
 use strict; use warnings;
 package JSONY;
-our $VERSION = '0.1.10';
+our $VERSION = '0.1.11';
 
 use Pegex::Parser;
 use JSONY::Grammar;
