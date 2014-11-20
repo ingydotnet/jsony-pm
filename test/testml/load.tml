@@ -162,3 +162,7 @@ baz: 42
 - foo bar
 --- json: [["foo", "bar"],["foo", "bar"]]
 
+=== Terminal comment
+abcd: goldfish
+# kaboom
+
