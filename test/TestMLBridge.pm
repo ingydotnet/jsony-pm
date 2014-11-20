@@ -8,7 +8,9 @@ use YAML;
 
 sub jsony_load {
     my ($self, $jsony) = @_;
-    return native 'JSONY'->new->load($jsony->value);
+    $jsony = $jsony->value;
+    $jsony =~ s/\|\n\z//;
+    return native 'JSONY'->new->load($jsony);
 }
 
 sub json_decode {

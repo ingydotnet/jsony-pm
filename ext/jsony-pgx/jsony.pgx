@@ -96,9 +96,9 @@ excludes: /
 ws: /(: WS | comment )/
 
 comment: /(:
-  HASH SPACE ANY* EOL |
-  HASH EOL |
-  SPACE* EOL
-)/
+  HASH SPACE ANY* |
+  HASH |
+  SPACE*
+) (: EOL | EOS )/
 
 # vim: sw=2:

@@ -165,5 +165,12 @@ baz: 42
 === Terminal comment
 --- jsony
 abcd: goldfish
-\# Comment
+\# Terminal Comment w/ newline
 --- json: {"abcd": "goldfish"}
+
+=== Terminal comment w/ no final newline (Issue 3)
+--- jsony
+abcd: goldfish
+\# Terminal Comment w/o newline|
+--- json: {"abcd": "goldfish"}
+

@@ -65,8 +65,6 @@ square brackets.
     [ "array", "of", 7, "things", "on", "two", "lines" ]
   ]
 
-More soon...
-
 NOTE: You may want to look at the tests (especially `t/load.t`) to see the full
 abilities of JSONY.
 
