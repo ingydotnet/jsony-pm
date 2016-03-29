@@ -2,8 +2,7 @@ use strict; use warnings;
 package JSONY;
 
 use version;
-our $VERSION = '0.1.15';
-$VERSION = version->declare("v$VERSION");
+our $VERSION = '0.1.16'; $VERSION = version->declare("v$VERSION");
 
 use Pegex::Parser;
 use JSONY::Grammar;

@@ -1,5 +1,7 @@
 # This Changes log is JSONY!
 
+- 0.1.16 'Tue Mar 29 14:13:00 PDT 2016',
+    'Make $VERSION be more mst++ approved.'
 - 0.1.15 'Tue Mar 29 10:42:30 PDT 2016',
     'Make $VERSION be mst++ approved.'
 - 0.1.14 'Tue Mar 29 08:18:26 PDT 2016',
