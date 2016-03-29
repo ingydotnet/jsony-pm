@@ -1,12 +1,12 @@
 =meta: 0.0.2
 
 name: JSONY
-version: 0.1.13
+version: 0.1.14
 abstract: Relaxed JSON with a little bit of YAML
 homepage: http://jsony.org
 language: perl
 license: perl
-copyright: 2012-2014
+copyright: 2012-2016
 
 author:
   name: Ingy döt Net
@@ -30,6 +30,8 @@ test:
   requires:
     JSON: 2.90
     YAML: 0.90
+
+badge: travis
 
 =zild:
   include_testml: 1
