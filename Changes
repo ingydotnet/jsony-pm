@@ -1,7 +1,9 @@
 # This Changes log is JSONY!
 
+- 0.1.15 'Tue Mar 29 10:42:30 PDT 2016',
+    'Make $VERSION be mst++ approved.'
 - 0.1.14 'Tue Mar 29 08:18:26 PDT 2016',
-    'Apply PR #5. Doc typo.'
+    'Remove coveralls badge from doc @pink_mist++'
 - 0.1.13 'Thu Nov 20 14:43:11 PST 2014',
     'Apply PR #5. Doc typo.'
 - 0.1.12 'Thu Nov 20 14:04:52 PST 2014',
