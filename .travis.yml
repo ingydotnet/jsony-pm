@@ -37,7 +37,7 @@ install:
 - cpan-install --coverage
   boolean~0.46
   JSON::PP
-  Pegex~0.73
+  Pegex~0.74
   YAML::PP~0.018
 
 before_script:

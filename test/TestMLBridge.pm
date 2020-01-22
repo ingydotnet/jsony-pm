@@ -3,8 +3,8 @@ use TestML::Bridge;
 use base 'TestML::Bridge';
 
 use JSONY;
-use JSON;
-use YAML;
+use JSON::PP;
+use YAML::PP;
 
 sub jsony_load {
     my ($self, $jsony) = @_;
@@ -19,12 +19,12 @@ sub json_decode {
 
 sub yaml {
     my ($self, $object) = @_;
-    my $yaml = YAML::Dump $object;
+    my $yaml = YAML::PP->new(schema => [qw'Core Perl'])->dump($object);
 
     # Account for various JSONs
     $yaml =~
-        s{!!perl/scalar:JSON::(?:XS::|PP::|backportPP::|)Boolean}
-        {!!perl/scalar:boolean}g;
+        s{!perl/scalar:JSON::(?:XS::|PP::|backportPP::|)Boolean}
+        {!perl/scalar:boolean}g;
 
     # XXX Floating point discrepancy hack
     $yaml =~ s/\.000+1//g;
