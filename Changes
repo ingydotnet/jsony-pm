@@ -1,5 +1,8 @@
 # This Changes log is JSONY!
 
+- 0.1.19 'Wed Jan 22 20:08:39 PST 2020',
+    'Use latest Pegex and TestML',
+    'Fix tests to use JSON::PP and YAML::PP'
 - 0.1.18 'Wed Jan 22 13:32:47 PST 2020',
     'Use latest Pegex and TestML'
 - 0.1.17 'Sun Feb 12 14:00:02 PST 2017',
