@@ -1,7 +1,7 @@
-%TestML 0.1.0
+#!/usr/bin/env testml
 
 # Make sure the JSONY parses to what we expect:
-*jsony.jsony_load.yaml == *json.json_decode.yaml
+*jsony.jsony-load.yaml == *json.json-decode.yaml
 
 === Trailing comment
 --- jsony

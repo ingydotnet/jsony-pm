@@ -1,7 +1,9 @@
+#!/usr/bin/env testml
+
 # These JSONY streams need JSON equivalence, or need to be declared as
 # decoding (parsing) errors:
 
-%TestML 0.1.0
+*jsony.jsony-load.Bool == True
 
 === Empty Stream
 --- jsony: ''
