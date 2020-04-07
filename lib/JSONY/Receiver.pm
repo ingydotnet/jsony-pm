@@ -11,7 +11,7 @@ sub got_seq { $_[1]->[0] }
 sub got_map { +{ map {($_->[0], $_->[1])} @{$_[1]->[0]} } }
 sub got_string {"$_[1]"}
 sub got_bare {
-    (undef, $_) = @_;;
+    (undef, $_) = @_;
     /^true$/ ? true :
     /^false$/ ? false :
     /^null$/ ? undef :
@@ -24,7 +24,7 @@ sub got_bare {
     "$_"
 }
 sub got_list {
-    (undef, $_) = @_;;
+    (undef, $_) = @_;
     @$_ == 1 ? $_->[0] : $_;
 }
 

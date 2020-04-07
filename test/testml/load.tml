@@ -197,16 +197,15 @@ baz: 42
 
 
 === Just a comment
---- SKIP
 --- jsony(<)
-    # Just a comment|
+    # Just a comment
 --- json: []
 
 
 === Comment in an empty object
 --- jsony(<)
     {
-    # Just a comment|
+    # Just a comment
     }
 --- json: {}
 
