@@ -2,8 +2,6 @@
 %version 0.0.1
 
 jsony:
-  | seq
-  | map
   | top_seq
   | top_map
   | list

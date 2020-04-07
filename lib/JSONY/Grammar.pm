@@ -3,7 +3,7 @@ use base 'Pegex::Grammar';
 
 use constant file => './share/jsony.pgx';
 
-sub make_tree {   # Generated/Inlined by Pegex::Grammar (0.73)
+sub make_tree {   # Generated/Inlined by Pegex::Grammar (0.74)
   {
     '+grammar' => 'jsony',
     '+toprule' => 'jsony',
@@ -25,12 +25,6 @@ sub make_tree {   # Generated/Inlined by Pegex::Grammar (0.73)
     },
     'jsony' => {
       '.any' => [
-        {
-          '.ref' => 'seq'
-        },
-        {
-          '.ref' => 'map'
-        },
         {
           '.ref' => 'top_seq'
         },
