@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:ingydotnet/jsony-tml
+	branch = master
+	commit = 2fa36e844de51180fe5837b9c23d1433c673cd57
+	parent = 14439e7f2de54e90c70cf18bd3d892137103309a
+	method = merge
+	cmdver = 0.4.1

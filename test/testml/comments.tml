@@ -1,0 +1,10 @@
+%TestML 0.1.0
+
+# Make sure the JSONY parses to what we expect:
+*jsony.jsony_load.yaml == *json.json_decode.yaml
+
+=== Trailing comment
+--- jsony
+- foo # foo
+- bar
+--- json: [ "foo", "bar", "baz" ]
