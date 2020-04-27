@@ -1,7 +1,7 @@
 =meta: 0.0.2
 
 name: JSONY
-version: 0.1.20
+version: 0.1.21
 abstract: Relaxed JSON with a little bit of YAML
 homepage: http://jsony.org
 language: perl
