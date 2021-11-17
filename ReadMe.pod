@@ -50,7 +50,7 @@ Strings with spaces can use single or double quotes:
     # More commenting
     "baz  boom "
 
-    [ "foo bar ", "baz  boom " ]
+    [ "foo bar", "baz  boom " ]
 
 Top level hashes can be ':' separated pairs or use curlies. Sub hashes
 require curlies.
